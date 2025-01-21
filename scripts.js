@@ -5,6 +5,12 @@ document.querySelectorAll('nav a').forEach(anchor => {
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
+
+        // Close the hamburger menu if it's open
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.classList.contains('show')) {
+            navLinks.classList.remove('show');
+        }
     });
 });
 
