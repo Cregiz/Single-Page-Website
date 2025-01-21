@@ -17,7 +17,7 @@ window.addEventListener('scroll', () => {
 
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 50) {
+        if (pageYOffset >= sectionTop - 50) {
             currentSection = section.getAttribute('id');
         }
     });
@@ -28,4 +28,12 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
+});
+
+// JavaScript for mobile menu toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
 });

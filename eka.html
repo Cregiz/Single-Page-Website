@@ -17,11 +17,14 @@
             background: #333;
             color: #fff;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
 
         nav a {
@@ -29,6 +32,7 @@
             padding: 15px;
             text-decoration: none;
             text-transform: uppercase;
+            display: block;
         }
 
         nav a:hover {
@@ -37,6 +41,17 @@
 
         nav a.active {
             background: #444;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
         }
 
         section {
@@ -64,21 +79,43 @@
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
+            }
+
+            .menu-toggle {
+                display: block;
+                color: white;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #333;
+                margin: 0;
+                padding: 10px 0;
+            }
+
+            .nav-links.show {
+                display: flex;
             }
 
             nav a {
-                padding: 10px;
+                text-align: left;
+                padding: 10px 20px;
             }
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="#header">Etusivu</a>
-        <a href="#about">Tietoa</a>
-        <a href="#services">Palvelut</a>
-        <a href="#contact">Yhteystiedot</a>
+        <span class="menu-toggle">☰</span>
+        <div class="nav-links">
+            <a href="#header">Etusivu</a>
+            <a href="#about">Tietoa</a>
+            <a href="#services">Palvelut</a>
+            <a href="#contact">Yhteystiedot</a>
+        </div>
     </nav>
 
     <section id="header">
@@ -102,7 +139,7 @@
     </section>
 
     <script>
-        // JS Smooth scroll
+        // JavaScript for smooth scrolling
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -112,7 +149,7 @@
             });
         });
 
-        // JS link highlight
+        // JavaScript for active link highlighting
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav a');
@@ -132,6 +169,14 @@
                     link.classList.add('active');
                 }
             });
+        });
+
+        // JavaScript for mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
         });
     </script>
 </body>
